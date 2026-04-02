@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f5f3ee",
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-surface": "#1b1c19",
+              "secondary-fixed": "#e4e2e1",
+              "secondary": "#5f5e5e",
+              "primary": "#695391",
+              "primary-light": "#A890D3",
+              "on-tertiary-fixed-variant": "#304671",
+              "surface-bright": "#fbf9f4",
+              "surface-variant": "#e4e2dd",
+              "secondary-container": "#e4e2e1",
+              "tertiary": "#485e8b",
+              "on-primary-container": "#2a174d",
+              "tertiary-fixed-dim": "#b0c6f9",
+              "on-secondary-container": "#656464",
+              "error": "#ba1a1a",
+              "background": "#fbf9f4",
+              "surface-tint": "#695391",
+              "on-secondary-fixed": "#1b1c1c",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#eae8e3",
+              "on-primary-fixed": "#21103d",
+              "on-error": "#ffffff",
+              "on-secondary": "#ffffff",
+              "inverse-primary": "#d9c7ff",
+              "surface-container-highest": "#e4e2dd",
+              "on-tertiary-container": "#233a65",
+              "primary-fixed-dim": "#d9c7ff",
+              "on-primary-fixed-variant": "#4f3c77",
+              "on-primary": "#ffffff",
+              "on-surface-variant": "#4e4639",
+              "outline-variant": "#d1c5b4",
+              "on-background": "#1b1c19",
+              "primary-fixed": "#e9ddff",
+              "outline": "#7f7667",
+              "surface": "#fbf9f4",
+              "tertiary-container": "#8fa5d6",
+              "error-container": "#ffdad6",
+              "inverse-on-surface": "#f2f1ec",
+              "secondary-fixed-dim": "#c8c6c5",
+              "surface-container": "#f0eee9",
+              "on-secondary-fixed-variant": "#474747",
+              "inverse-surface": "#30312e",
+              "on-tertiary-fixed": "#001a41",
+              "primary-container": "#e9ddff",
+              "surface-dim": "#dbdad5",
+              "tertiary-fixed": "#d8e2ff"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif", "serif"],
+              "body": ["Manrope", "sans-serif"],
+              "label": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+          min-height: 100dvh;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        #order-modal:not(.hidden) {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-light selection:text-white">
+<!-- TopAppBar from COMPONENTS_11 -->
+<header class="fixed top-0 w-full z-50 bg-[#fbf9f4]/80 backdrop-blur-xl transition-all duration-300">
+<div class="flex justify-between items-center px-6 h-16 w-full max-w-screen-2xl mx-auto">
+<button class="text-[#695391] hover:opacity-70 transition-opacity active:scale-95 duration-300" id="menu-toggle">
+<span class="material-symbols-outlined text-2xl" data-icon="menu">menu</span>
+</button>
+<h1 class="text-xl font-['Noto_Serif'] italic text-[#695391]">
+            Artisanal Gallery
+        </h1>
+<button class="text-[#695391] hover:opacity-70 transition-opacity active:scale-95 duration-300">
+<span class="material-symbols-outlined text-2xl" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32">
+<!-- Hero Section -->
+<section class="px-6 mb-8 max-w-screen-2xl mx-auto">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-primary mb-2 block">Lumière Atelier</span>
+<h2 class="font-headline text-3xl mb-3 leading-tight font-light">The Curated <span class="italic font-normal">Treasury</span></h2>
+<p class="text-secondary text-sm leading-relaxed font-body max-w-md">
+            Masterful precision in every piece. A sanctuary for the patient art of the goldsmith.
+        </p>
+</section>
+<!-- Filters Section (Compact) -->
+<section class="px-6 mb-8 max-w-screen-2xl mx-auto overflow-x-auto no-scrollbar">
+<div class="flex items-center gap-3 whitespace-nowrap pb-2">
+<button class="px-5 py-2 rounded-full bg-primary text-on-primary font-label text-[10px] uppercase tracking-widest transition-all duration-300 active:scale-95" data-filter="all">
+                All
+            </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-secondary font-label text-[10px] uppercase tracking-widest hover:bg-primary-light/20 transition-all duration-300 active:scale-95" data-filter="new">
+                New
+            </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-secondary font-label text-[10px] uppercase tracking-widest hover:bg-primary-light/20 transition-all duration-300 active:scale-95" data-filter="best-sellers">
+                Best Sellers
+            </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-secondary font-label text-[10px] uppercase tracking-widest hover:bg-primary-light/20 transition-all duration-300 active:scale-95" data-filter="bridal">
+                Bridal
+            </button>
+<button class="px-5 py-2 rounded-full bg-surface-container-high text-secondary font-label text-[10px] uppercase tracking-widest hover:bg-primary-light/20 transition-all duration-300 active:scale-95" data-filter="modern">
+                Modern
+            </button>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="px-6 max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-2 gap-x-4 gap-y-8">
+<!-- Product Card 1 -->
+<div class="group flex flex-col" data-category="modern">
+<div class="relative overflow-hidden rounded-lg bg-surface-container-low aspect-[3/4] mb-3">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="18k gold necklace" id="img-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuaD96DuYIGlWXZHb00r3nNCQkz2nhE_an8M03j3LP_NbhgD5vjTkEkPtM0EWER6ToG9lTFnFJmSlfGO8LhB9FPRZeHBzdDce5B-Fxhj8tV0EXcFbqLG7dVXMaIoeXlFzuKhmq5pq9c_MK0TPz2l-MadVMZ6N7zwZKzRdqu7nAL0PaKfCHm2YPc3wW2ebPJ73Fm0H_UFJrXsBMMtowtHPgdJNy19Ess9lPNY6wQUhST7E19QXFMS3uSTaC8RRnHbaxhHOq0hEGdA6N"/>
+</div>
+<div class="flex flex-col flex-grow">
+<h3 class="font-headline text-sm mb-1 truncate font-medium" id="name-1">Aurelia Pendant</h3>
+<p class="font-body text-secondary text-xs mb-4" id="price-1">$1,250</p>
+<button class="mt-auto py-2.5 bg-primary text-on-primary rounded-lg font-label text-[9px] uppercase tracking-[0.15em] flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md transition-all active:scale-95" onclick="openOrderModal('Aurelia Pendant', '$1,250', document.getElementById('img-1').src)">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+                        Order Now
+                    </button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group flex flex-col" data-category="best-sellers">
+<div class="relative overflow-hidden rounded-lg bg-surface-container-low aspect-[3/4] mb-3">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Silver earrings" id="img-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDj-3IyDKO1MLQOU4BvOPV_DglPXvaZGH-KyqkskVb_1X6lEihIHasV4UBmapvhN-HWv8EA9-JuAWCidGb5Qn93pah12HDtAUP4PE1hFUMDsjv7M0J7xoJMqkZcHMoJOIr5izlDQefJL90jDBt5y7UisL079rVTBDpVR37zJ37X4N0lGflP6rL8FD6DerE8XerJzIYi2G-Rb9LztAbZoBMR7DUpF4GsTma7Am4eOXA2gIJvLpOkXHh0SduuArlpdnqIfHKRvENvBt9A"/>
+</div>
+<div class="flex flex-col flex-grow">
+<h3 class="font-headline text-sm mb-1 truncate font-medium" id="name-2">Lunar Filigree</h3>
+<p class="font-body text-secondary text-xs mb-4" id="price-2">$890</p>
+<button class="mt-auto py-2.5 bg-surface-container-highest text-on-surface rounded-lg font-label text-[9px] uppercase tracking-[0.15em] flex items-center justify-center gap-1.5 hover:bg-primary-light/10 transition-all active:scale-95" onclick="openOrderModal('Lunar Filigree', '$890', document.getElementById('img-2').src)">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+                        Order Now
+                    </button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group flex flex-col" data-category="new">
+<div class="relative overflow-hidden rounded-lg bg-surface-container-low aspect-[3/4] mb-3">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Gold stacking rings" id="img-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVrGSn-oVDTqtOI0qQcE97bmjrNpyanfiSNzoCHv04jAqWI9QNHKw5-LC3ZNLlS2afyrec92LuVReQfCC4JGGmNps5VJ3fS3Z976dPibURPed51Or2no4nNa_zyg_Os7pZnyyRDaIAohnUcQgpGYqCkbn-2rWsyatOFAZJxiJTrTN3yW7m8h77n0LNVO2JJhD46N59q2Ym6LbNrj_JoaQnjdb-Z7OGqAQVLRWKcJXY13xH22OwVWQ3XLEmrzm97FV70GQ-BGb4wREk"/>
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-2.5 py-1 rounded text-[8px] uppercase tracking-widest font-label font-bold">
+                        Limited
+                    </div>
+</div>
+<div class="flex flex-col flex-grow">
+<h3 class="font-headline text-sm mb-1 truncate font-medium" id="name-3">Elysian Rings</h3>
+<p class="font-body text-secondary text-xs mb-4" id="price-3">$2,100</p>
+<button class="mt-auto py-2.5 bg-surface-container-highest text-on-surface rounded-lg font-label text-[9px] uppercase tracking-[0.15em] flex items-center justify-center gap-1.5 hover:bg-primary-light/10 transition-all active:scale-95" onclick="openOrderModal('Elysian Rings', '$2,100', document.getElementById('img-3').src)">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+                        Order Now
+                    </button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group flex flex-col" data-category="bridal">
+<div class="relative overflow-hidden rounded-lg bg-surface-container-low aspect-[3/4] mb-3">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Bridal headpiece" id="img-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv9o2Ot5pAhHx6DylQ2qLsUHdBV5Ds9xmndyRt-EzCbKjnlUSNxekLr8y6fCi_9fsceEJA7h3mYivOPMH4khDiLqhfjCzD-ZElxwZ1lfLDhW4W5rHdD0IRRt3YUkU-Ep_oPHxByZGhkSRpUYZSARtXAhMI3SXr76lGX70EEBAG__SUIoeWt9Gx18oFoRbrS2tD-2hnajt9b9R2q5BL-KfxaNGvN6CyoUSyToXTDFXuHlAmoudpfYPML61SzQImClzq2pazgUYAKebm"/>
+</div>
+<div class="flex flex-col flex-grow">
+<h3 class="font-headline text-sm mb-1 truncate font-medium" id="name-4">Heirloom Piece</h3>
+<p class="font-body text-secondary text-xs mb-4" id="price-4">$4,500</p>
+<button class="mt-auto py-2.5 bg-surface-container-highest text-on-surface rounded-lg font-label text-[9px] uppercase tracking-[0.15em] flex items-center justify-center gap-1.5 hover:bg-primary-light/10 transition-all active:scale-95" onclick="openOrderModal('Heirloom Piece', '$4,500', document.getElementById('img-4').src)">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+                        Order Now
+                    </button>
+</div>
+</div>
+<!-- Custom Atelier Banner -->
+<div class="col-span-2 mt-4">
+<div class="relative overflow-hidden rounded-xl bg-primary-container aspect-[16/7]">
+<img class="w-full h-full object-cover opacity-40 mix-blend-multiply" data-alt="Workshop view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5QW9buZgJBhfhsghrXVZvVk3Y2S5_VHfJ1eq-y5N0GwTUI94DwkqBKwfG5w7wMTjrbpXfi22BXJ9-h55Vd8cf7ToV_hLApKNm5PH2IqZET-VOMyF875SoEhNoUYEo_RSQ7pM-RNV-fsm3590PVxnqgsXuikgoULpiVdkbEYUHfSk-1gWABs6maAILrRB7xLGF8WF54eCmG-O9_NyF7ab5kVol64z2r3fk0nkHjuML-Rxw6i9JDuWrcFyN8JMU_oSdRksmVSU2sU6A"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
+<h3 class="font-headline text-xl mb-1 text-on-primary-container font-light italic">Custom Atelier</h3>
+<p class="text-on-primary-container/80 text-[11px] mb-4 leading-tight max-w-[240px]">Bespoke commissions from master artisans.</p>
+<button class="underline decoration-primary underline-offset-8 font-label text-[9px] uppercase tracking-widest text-primary font-bold">Consult Now</button>
+</div>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group flex flex-col mt-4" data-category="modern">
+<div class="relative overflow-hidden rounded-lg bg-surface-container-low aspect-[3/4] mb-3">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Gold bracelet" id="img-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxyqTQIEg8xXX7sCp-tSu9t5mzRw8lm4XwPO9-UEW5CLl5JSMs6AlftKbdJeC_7zcya1-0RaRhKwCHRY2E7l5bJ1Zpbe3KjEgPBKdCjj3FFzJbboKuyjlxHiYaWUS77DCIK9TDEG7HB44AoxPSpRt7d3UjGC2fSAt0yIq2m3VhS4Gh-GgSuRtRGmtpae9lR_vP2HJ5hkmeb4_1FshWPPRJg1F7uR1zAG14scaI-RVD6W--_l8DQ6Btr5wXRXOxW30X1vDUwuniWzFG"/>
+</div>
+<div class="flex flex-col flex-grow">
+<h3 class="font-headline text-sm mb-1 truncate font-medium" id="name-5">Prism Cuff</h3>
+<p class="font-body text-secondary text-xs mb-4" id="price-5">$1,550</p>
+<button class="mt-auto py-2.5 bg-surface-container-highest text-on-surface rounded-lg font-label text-[9px] uppercase tracking-[0.15em] flex items-center justify-center gap-1.5 hover:bg-primary-light/10 transition-all active:scale-95" onclick="openOrderModal('Prism Cuff', '$1,550', document.getElementById('img-5').src)">
+<span class="material-symbols-outlined text-[16px]" data-icon="shopping_cart">shopping_cart</span>
+                        Order Now
+                    </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Order Modal -->
+<div class="hidden fixed inset-0 z-[100] bg-[#1b1c19]/60 backdrop-blur-sm items-center justify-center p-6" id="order-modal">
+<div class="bg-surface-bright w-full max-w-sm rounded-2xl shadow-2xl overflow-hidden flex flex-col transform transition-all">
+<!-- Modal Header -->
+<div class="px-6 py-5 border-b border-outline-variant/20 flex justify-between items-center">
+<h4 class="font-headline italic text-lg text-primary font-medium">Place Order</h4>
+<button class="text-secondary hover:text-primary transition-colors" onclick="closeOrderModal()">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+</div>
+<div class="p-6 flex-grow overflow-y-auto no-scrollbar space-y-6">
+<!-- Product Info -->
+<div class="flex gap-4 items-center bg-primary-fixed/30 p-4 rounded-xl">
+<img alt="Product" class="w-16 h-16 object-cover rounded-lg shadow-sm" id="modal-product-img" src=""/>
+<div class="flex flex-col">
+<span class="font-headline text-sm font-semibold text-on-surface" id="modal-product-name"></span>
+<span class="font-body text-primary text-xs font-bold mt-0.5" id="modal-product-price"></span>
+</div>
+</div>
+<!-- Form -->
+<form class="space-y-4">
+<div>
+<label class="block font-label text-[10px] uppercase tracking-widest text-secondary mb-2 ml-1">Full Name</label>
+<input class="w-full bg-surface-container-lowest border-outline-variant/30 rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-primary-light/50 focus:border-primary-light placeholder:text-neutral-400 outline-none transition-all" id="customer-name" placeholder="e.g. Elena Rossi" type="text"/>
+</div>
+<div>
+<label class="block font-label text-[10px] uppercase tracking-widest text-secondary mb-2 ml-1">Mobile Number</label>
+<input class="w-full bg-surface-container-lowest border-outline-variant/30 rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-primary-light/50 focus:border-primary-light placeholder:text-neutral-400 outline-none transition-all" id="customer-phone" placeholder="+39 ..." type="tel"/>
+</div>
+<div>
+<label class="block font-label text-[10px] uppercase tracking-widest text-secondary mb-2 ml-1">Delivery Address</label>
+<textarea class="w-full bg-surface-container-lowest border-outline-variant/30 rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-primary-light/50 focus:border-primary-light placeholder:text-neutral-400 outline-none transition-all" id="customer-address" placeholder="Enter your shipping details..." rows="3"></textarea>
+</div>
+</form>
+</div>
+<!-- Modal Footer -->
+<div class="p-6 bg-surface-container-low">
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-label text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg shadow-primary/25 active:scale-[0.98] transition-all" onclick="sendWhatsAppMessage()">
+<span class="material-symbols-outlined text-lg">chat</span>
+                Checkout via WhatsApp
+            </button>
+</div>
+</div>
+</div>
+<!-- Footer from COMPONENTS_11 -->
+<footer class="bg-[#f5f3ee] w-full mb-20 flex flex-col gap-8 px-8 py-12" id="footer-contact">
+<div class="max-w-screen-xl mx-auto w-full">
+<h4 class="font-['Noto_Serif'] text-lg text-[#1b1c19] mb-4">Artisanal Gallery</h4>
+<p class="font-['Manrope'] text-sm leading-relaxed text-[#1b1c19]/80 mb-8 max-w-sm">
+            Born from a passion for timeless elegance and ancestral techniques. Handcrafted with intent in every curve.
+        </p>
+<div class="flex gap-10 mb-10">
+<div class="flex flex-col gap-3">
+<h5 class="font-label text-[10px] uppercase tracking-[0.2em] text-[#695391] mb-1">Explore</h5>
+<a class="text-[#1b1c19]/80 text-sm hover:text-[#a890d3] transition-colors" href="#">Craft</a>
+<a class="text-[#1b1c19]/80 text-sm hover:text-[#a890d3] transition-colors" href="#">Care</a>
+<a class="text-[#1b1c19]/80 text-sm hover:text-[#a890d3] transition-colors" href="#">Contact</a>
+</div>
+<div class="flex flex-col gap-3">
+<h5 class="font-label text-[10px] uppercase tracking-[0.2em] text-[#695391] mb-1">Hours</h5>
+<p class="text-[#1b1c19]/80 text-sm">Mon — Fri</p>
+<p class="text-[#1b1c19]/80 text-sm">10:00 — 18:00</p>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/10">
+<p class="font-['Manrope'] text-xs text-secondary/60 uppercase tracking-widest">
+                © 2024 Artisanal Gallery. Handcrafted Intent.
+            </p>
+</div>
+</div>
+</footer>
+<!-- BottomNavBar from COMPONENTS_11 -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-4 pt-2 bg-[#fbf9f4]/90 backdrop-blur-lg z-50 rounded-t-lg shadow-[0_-4px_24px_rgba(27,28,25,0.04)]">
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#695391] to-[#a890d3] text-white rounded-full p-3 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="grid_view" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1b1c19]/60 p-3 hover:text-[#695391] active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="auto_awesome">auto_awesome</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1b1c19]/60 p-3 hover:text-[#695391] active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="architecture">architecture</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1b1c19]/60 p-3 hover:text-[#695391] active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="shopping_cart">shopping_cart</span>
+</a>
+</nav>
+<script>
+    function openOrderModal(name, price, imgSrc) {
+        document.getElementById('modal-product-name').innerText = name;
+        document.getElementById('modal-product-price').innerText = price;
+        document.getElementById('modal-product-img').src = imgSrc;
+        document.getElementById('order-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeOrderModal() {
+        document.getElementById('order-modal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal on background click
+    document.getElementById('order-modal').addEventListener('click', function(e) {
+        if (e.target === this) closeOrderModal();
+    });
+
+    // Filter Logic
+    document.querySelectorAll('[data-filter]').forEach(button => {
+        button.addEventListener('click', () => {
+            const filterValue = button.getAttribute('data-filter');
+            
+            // Update Active Styles
+            document.querySelectorAll('[data-filter]').forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-on-primary');
+                btn.classList.add('bg-surface-container-high', 'text-secondary');
+            });
+            button.classList.add('bg-primary', 'text-on-primary');
+            button.classList.remove('bg-surface-container-high', 'text-secondary');
+
+            // Filter Products
+            document.querySelectorAll('[data-category]').forEach(card => {
+                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+    });
+
+    function sendWhatsAppMessage() {
+        const productName = document.getElementById('modal-product-name').innerText;
+        const productPrice = document.getElementById('modal-product-price').innerText;
+        const customerName = document.getElementById('customer-name').value;
+        const customerPhone = document.getElementById('customer-phone').value;
+        const customerAddress = document.getElementById('customer-address').value;
+
+        if (!customerName || !customerPhone || !customerAddress) {
+            alert('Please fill in all the details.');
+            return;
+        }
+
+        const message = `*New Order from Artisanal Gallery*\n\n` +
+                        `*Product:* ${productName}\n` +
+                        `*Price:* ${productPrice}\n\n` +
+                        `*Customer Details:*\n` +
+                        `- Name: ${customerName}\n` +
+                        `- Phone: ${customerPhone}\n` +
+                        `- Address: ${customerAddress}`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappNumber = '1234567890';
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+        window.open(whatsappUrl, '_blank');
+    }
+</script>
+<!-- Side Drawer Menu -->
+<div class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity duration-300 pointer-events-none active:pointer-events-auto" id="side-drawer-overlay"></div>
+<div class="fixed top-0 left-0 h-full w-72 bg-surface-bright z-[70] transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col" id="side-drawer">
+<div class="p-6 flex justify-between items-center border-b border-outline-variant/20">
+<h2 class="font-headline italic text-lg text-primary">Menu</h2>
+<button class="text-secondary hover:text-primary transition-colors" id="close-drawer">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+</div>
+<nav class="flex-grow py-8 px-6 space-y-6">
+<a class="flex items-center gap-4 text-on-surface hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">home</span>
+<span class="font-label text-xs uppercase tracking-widest">Home</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">info</span>
+<span class="font-label text-xs uppercase tracking-widest">About Us</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface hover:text-primary transition-colors group" href="#footer-contact" id="contact-link">
+<span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">mail</span>
+<span class="font-label text-xs uppercase tracking-widest">Contact Us</span>
+</a>
+</nav>
+<div class="p-8 border-t border-outline-variant/10">
+<p class="text-[10px] uppercase tracking-tighter text-secondary/60">Lumière Atelier © 2024</p>
+</div>
+</div><script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const closeDrawer = document.getElementById('close-drawer');
+    const sideDrawer = document.getElementById('side-drawer');
+    const drawerOverlay = document.getElementById('side-drawer-overlay');
+    const contactLink = document.getElementById('contact-link');
+
+    function toggleMenu(isOpen) {
+        if (isOpen) {
+            sideDrawer.classList.remove('-translate-x-full');
+            drawerOverlay.classList.remove('hidden', 'pointer-events-none');
+            setTimeout(() => drawerOverlay.classList.add('opacity-100'), 10);
+            document.body.style.overflow = 'hidden';
+        } else {
+            sideDrawer.classList.add('-translate-x-full');
+            drawerOverlay.classList.remove('opacity-100');
+            setTimeout(() => {
+                drawerOverlay.classList.add('hidden', 'pointer-events-none');
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    menuToggle.addEventListener('click', () => toggleMenu(true));
+    closeDrawer.addEventListener('click', () => toggleMenu(false));
+    drawerOverlay.addEventListener('click', () => toggleMenu(false));
+
+    // Smooth scroll for Contact Us link
+    contactLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleMenu(false);
+        document.querySelector('#footer-contact').scrollIntoView({ behavior: 'smooth' });
+    });
+</script></body></html>
